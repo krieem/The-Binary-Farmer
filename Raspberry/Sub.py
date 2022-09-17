@@ -10,7 +10,7 @@ port=1883
 mqttUser="ifn649"
 mqttPass="ifn649"
 topics = ["Humidity", "Temperature", "Soil", "Heat" ]
-actor = serial.Serial("/dev/rfcomm0", 9600)
+#actor = serial.Serial("/dev/rfcomm0", 9600)
 
 def init():
     blue0 = os.path.exists("/dev/rfcomm0")
@@ -32,24 +32,10 @@ def on_connect(client, userdata, flags, rc): # func for making connection print(
 
 def on_message(client, userdata, msg):
     print("Receving Data From AWS")
-    led('1')
     print()
     print(msg.topic+" "+str(msg.payload))
-    led('0')
 
-def led(soil):
-    try:
-        if (soil == '1'):
-            actor.write("0".encode())
-            sleep(2)
-        elif (soil == '0'):
-            actor.write("1".encode())
-    except:
-        print("Connection Error")
-        print("Retring in 1 second")
-        print()
         
-init()
 
 client = mqtt.Client() 
 client.on_connect = on_connect
