@@ -12,7 +12,7 @@ print('Starting up bot...')
 
 
 def send_msg(msg):
-	token = "5697769562:AAEL6MyZ4V6wy006yV3D-6o48nKscKIXmX4"
+	token = "token"
 	chat_id = "717510350"
 	url_req = "https://api.telegram.org/bot"+ token +"/sendMessage" + "?chat_id=" + chat_id + "&text=" + msg
 	results = requests.get(url_req)
